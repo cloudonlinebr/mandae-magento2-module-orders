@@ -170,10 +170,10 @@ class CreateShippingService
 
         return [
             'address' => $this->getRecipientAddress($order),
-            'document' => $address->getVatId(),
+            'document' => str_replace(['.', '-'], '', $address->getVatId()),
             'email' => $address->getEmail(),
             'fullName' => $address->getName(),
-            'phone' => $address->getTelephone(),
+            'phone' => str_replace(['(', ')', '-', '.', ' '], '', $address->getTelephone()),
         ];
     }
 
