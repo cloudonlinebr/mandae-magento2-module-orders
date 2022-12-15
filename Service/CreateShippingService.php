@@ -128,7 +128,10 @@ class CreateShippingService
             'totalFreight' => $order->getShippingAmount(), // Valor total do frete
             'totalValue' => $order->getBaseSubtotal(), // Valor total da Nota Fiscal
             'trackingId' => $trackingPrefix . $order->getIncrementId(), // Código de Rastreamento
-            //'valueAddedServices' => '',
+            'valueAddedServices' => [[
+                'name' => 'ValorDeclarado',
+                'value' => $order->getBaseSubtotal(),
+            ]],
             //'volumes' => '',
         ]];
     }
