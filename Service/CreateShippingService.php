@@ -154,8 +154,8 @@ class CreateShippingService
             }
         }
 
-        if ($invoice['key'] === null)
-            throw new \Exception('Unable to find invoice key.');
+        //if ($invoice['key'] === null)
+        //    throw new \Exception('Unable to find invoice key.');
         
         return $invoice;
     }
@@ -185,10 +185,10 @@ class CreateShippingService
         $address = $order->getShippingAddress();
         
         return [
-            'addressLine2' => $address->getStreet()[2], // Complemento
+            'addressLine2' => $address->getStreet()[2] ?? '', // Complemento
             'city' => $address->getCity(),
             'country' => 'BR',
-            'neighborhood' => $address->getStreet()[3],
+            'neighborhood' => $address->getStreet()[3] ?? '',
             'number' => $address->getStreet()[1],
             'postalCode' => str_replace('-', '', $address->getPostcode()),
             //'reference' => '',
